@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="d02503f3-9db7-4e50-a249-db6a87bf3df2" name="Changes" comment="" />
+    <list default="true" id="d02503f3-9db7-4e50-a249-db6a87bf3df2" name="Changes" comment="Функция обрезки аудио файла по заданному промежутку" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 5
@@ -21,6 +34,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.audio.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main"
@@ -42,6 +56,35 @@
       <option name="presentableId" value="Default" />
       <updated>1711536227221</updated>
     </task>
+    <task id="LOCAL-00001" summary="Загрузка wav файла и парсинг заголовка">
+      <option name="closed" value="true" />
+      <created>1711541848881</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1711541848881</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Функция обрезки аудио файла по заданному промежутку">
+      <option name="closed" value="true" />
+      <created>1711550916571</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1711550916571</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Загрузка wav файла и парсинг заголовка" />
+    <MESSAGE value="Функция обрезки аудио файла по заданному промежутку" />
+    <option name="LAST_COMMIT_MESSAGE" value="Функция обрезки аудио файла по заданному промежутку" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="self.stHeaderFields" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
