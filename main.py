@@ -1,11 +1,12 @@
 import argparse
 
-from audio import Audiofile
+from audioWav import Audiofile
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('command', choices=['save', 'erase', 'splice', 'speed', 'stop'], help='Команда')
+    parser.add_argument('command', choices=['save', 'erase', 'splice',
+                                            'speed', 'stop'], help='Команда')
 
     example = None
     while True:
@@ -15,18 +16,20 @@ def main():
             example = Audiofile(filename)
             example.take_header_config()
         elif command == 'erase':
-            start, finish = [int(x) for x in input("Введите координаты обрезки ").split()]
+            start, finish = [int(x) for x in input("Введите координаты обрезки"
+                                                   " ").split()]
             if example is not None:
-                example.crop_file(start, finish)
+                example.crop_audio(start, finish)
             else:
                 raise Exception("Произведите сохранение файла")
         elif command == 'splice':
-            filename = input("Введите название файла с которым будет склейка: ")
+            filename = input("Введите название файла с которым будет "
+                             "склейка:")
             time = input("Введите время в которое хотите вставить :* ")
             other = Audiofile(filename)
             other.take_header_config()
             if other is not None and example is not None:
-                example.splice_file(other, int(time))
+                example.splice_audio(other, int(time))
             else:
                 raise Exception("Произведите сохранение файла")
         elif command == 'speed':

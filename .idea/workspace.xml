@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d02503f3-9db7-4e50-a249-db6a87bf3df2" name="Changes" comment="Функция обрезки аудио файла по заданному промежутку" />
+    <list default="true" id="d02503f3-9db7-4e50-a249-db6a87bf3df2" name="Changes" comment="Работа через консоль. Функция вставки аудио. Функция ускорения/замедления аудио">
+      <change afterPath="$PROJECT_DIR$/audioMP3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audioWav.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/parseMP3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,12 +28,32 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;crycrash&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="c8c4c789-6324-46db-a362-64ceda4e02bb" />
+        <option name="url" value="https://github.com/crycrash/AudioEditor.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/ex.txt" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2eGgFpfF6NeaBzm1MyVMGioVbVH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -35,11 +63,21 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.audio.executor": "Run",
+    "Python.audioMP3.executor": "Run",
+    "Python.audio_idv3.executor": "Run",
+    "Python.parseMP3.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "preferences.sourceCode"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/wav" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -72,13 +110,22 @@
       <option name="project" value="LOCAL" />
       <updated>1711550916571</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Работа через консоль. Функция вставки аудио. Функция ускорения/замедления аудио">
+      <option name="closed" value="true" />
+      <created>1711643576831</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711643576831</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Загрузка wav файла и парсинг заголовка" />
     <MESSAGE value="Функция обрезки аудио файла по заданному промежутку" />
-    <option name="LAST_COMMIT_MESSAGE" value="Функция обрезки аудио файла по заданному промежутку" />
+    <MESSAGE value="Работа через консоль. Функция вставки аудио. Функция ускорения/замедления аудио" />
+    <option name="LAST_COMMIT_MESSAGE" value="Работа через консоль. Функция вставки аудио. Функция ускорения/замедления аудио" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
