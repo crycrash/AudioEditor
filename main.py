@@ -2,48 +2,48 @@ import argparse
 
 from audioWav import Audiofile
 
+with open('/Users/milana/Downloads/sample312.mp3', 'rb') as wav_in:
+    raw_data = wav_in.read()
+frame_start = (len(raw_data) / (
+                128 *
+                1000)) * 8
+print(frame_start)
+frame_start = int(len(raw_data) // frame_start)
+print(frame_start)
+frame_end = frame_start*20
+print(frame_end)
+frame_start = frame_start*9
+print(frame_start)
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('command', choices=['save', 'erase', 'splice',
-                                            'speed', 'stop'], help='Команда')
+    # Записываем обрезанные данные в новый файл
+with open('/Users/milana/Downloads/gitara2.mp3', 'wb') as f:
+        f.write(raw_data[frame_start:frame_end])
 
-    example = None
-    while True:
-        command = input("Введите команду (save, read, erase, splice, speed): ")
-        if command == 'save':
-            filename = input("Введите название файла для сохранения: ")
-            example = Audiofile(filename)
-            example.take_header_config()
-        elif command == 'erase':
-            start, finish = [int(x) for x in input("Введите координаты обрезки"
-                                                   " ").split()]
-            if example is not None:
-                example.crop_audio(start, finish)
-            else:
-                raise Exception("Произведите сохранение файла")
-        elif command == 'splice':
-            filename = input("Введите название файла с которым будет "
-                             "склейка:")
-            time = input("Введите время в которое хотите вставить :* ")
-            other = Audiofile(filename)
-            other.take_header_config()
-            if other is not None and example is not None:
-                example.splice_audio(other, int(time))
-            else:
-                raise Exception("Произведите сохранение файла")
-        elif command == 'speed':
-            speed = input('Введите коэфициент для замедления/ускорения аудио')
-            if example is not None:
-                example.speed_multiplying(float(speed))
-            else:
-                raise Exception("Произведите сохранение файла")
-        elif command == 'stop':
-            print("Программа завершена")
-            break
-        else:
-            print("Некорректная команда")
+def insert_mp3(input_file, insert_file, output_file, start_time):
+    with open(input_file, 'rb') as f:
+        input_data = f.read()
 
+    with open(insert_file, 'rb') as f:
+        insert_data = f.read()
 
-if __name__ == "__main__":
-    main()
+    frame_start = (len(input_data) / (
+            128 *
+            1000)) * 8
+    print(frame_start)
+    frame_start = int(len(input_data) // frame_start)
+    frame_start = frame_start * start_time
+
+    # Вставляем данные нового файла в обрезанный файл
+    output_data = input_data[:frame_start] + insert_data + input_data[frame_start:]
+
+    # Записываем результат в новый файл
+    with open(output_file, 'wb') as f:
+        f.write(output_data)
+
+# Пример использования:
+input_file = '/Users/milana/Downloads/sample-15s.mp3'
+insert_file = '/Users/milana/Downloads/gitara2.mp3'
+output_file = '/Users/milana/Downloads/sam-23445s.mp3'
+start_time = 5  # начало вставки в секундах
+
+insert_mp3(input_file, insert_file, output_file, start_time)
