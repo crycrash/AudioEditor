@@ -1,14 +1,18 @@
-from parseMP3 import AudioFrameMp3 as frame_header
+from parseMP3 import AudioFrameMp3 as frameHeader
+from pydub import AudioSegment
+from audioWav import AudiofileWav
 
 
-class Audiofile:
+class AudiofileMP3:
 
     def __init__(self, path):
         """"Инициализация аудио фрагмента"""
         self.path = path
-        self.audio_frame = frame_header(path)
+        self.audio_frame = frameHeader(path)
         self.audio = self.audio_frame.return_audio_data()
         self.audio_data = self.audio.raw_data
+        self.frames_headers = self.audio_frame.data_example.all_headers
+        self.sizes_headers = self.audio_frame.data_example.all_sizes
 
     def output_files(self, path):
         """"Вывод в файл"""
@@ -29,21 +33,28 @@ class Audiofile:
         self.audio.size = end_point - start_point
 
     def splice_audio(self, path, other, start_point):
-        """Вставка одного файла в другой"""
+        """Вставка одного аудио файла в другой"""
         if start_point > int(self.audio.size):
             raise Exception('You have gone beyond the allowed length')
         frame_start = int(len(self.audio_data) // self.audio.size)
         frame_start = frame_start * start_point
         insert_data = other.audio_data
-        output_data = self.audio_data[:frame_start] + insert_data + self.audio_data[
-                                                               frame_start:]
+        output_data = (self.audio_data[:frame_start] + insert_data
+                       + self.audio_data[frame_start:])
         self.audio_data = output_data
         self.output_files(path)
         self.audio.size += other.audio.size
 
+    def speed_up_audio(self, path, speed=2.0):
+        """Ускорение аудио"""
+        sound = AudioSegment.from_mp3(self.path)
+        sound.export('temp.wav', format="wav")
+        temp_audio = AudiofileWav('temp.wav')
+        temp_audio.take_header_config()
+        temp_audio.speed_multiplying(speed)
+        sound = AudioSegment.from_wav('temp.wav')
+        sound.export(path, format="mp3")
 
 
-a = Audiofile('/Users/milana/Downloads/sample4.mp3')
-a.crop_audio('/Users/milana/Downloads/gitara1.mp3', 4, 10)
-b = Audiofile('/Users/milana/Downloads/sample-9s.mp3')
-b.splice_audio('/Users/milana/Downloads/git1.mp3', a, 3)
+a = AudiofileMP3('/Users/milana/Downloads/sample4.mp3')
+a.speed_up_audio('/Users/milana/Downloads/speedtest.mp3', 0.5)

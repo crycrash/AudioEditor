@@ -1,7 +1,7 @@
 import struct
 from config import bitrate_table, sample_rate_table
-from dataclass_mp3 import Mp3Audio as mp3_audio
-from dataclass_MP3_frame import Mp3AudioFrame as mp3_audio_frame
+from dataclass_mp3 import Mp3Audio as mp3Audio
+from dataclass_MP3_frame import Mp3AudioFrame as mp3AudioFrame
 
 
 class AudioFrameMp3:
@@ -14,7 +14,7 @@ class AudioFrameMp3:
 
     def init_data_example(self, path):
         """Инициализация датакласса фрагмента"""
-        self.data_example = mp3_audio(all_sizes=[], all_headers=[])
+        self.data_example = mp3Audio(all_sizes=[], all_headers=[])
         self.data_example.path = path
         with open(self.data_example.path, 'rb') as wav_in:
             self.data_example.raw_data = wav_in.read()
@@ -27,13 +27,14 @@ class AudioFrameMp3:
         frame_header = struct.unpack("BBBB",
                                      frame.header)
         frame.marker = frame_header[0]
-        if frame.marker != 255:
+        full_block = 255
+        if frame.marker != full_block:
             return -1
         frame.padded = bool(frame_header[2] & 0b10)
         bit_rate_bits = frame_header[2] & 0xf0
 
         if (frame_header[1] & 0b00001110) != 0b1010:
-            raise RuntimeError("Can currently only handle mpeg 1!")
+            raise RuntimeError("Can currently only handle mp3!")
 
         sample_bytes = (0b00001100 & frame_header[2]) >> 2
         frame.sample_rate = sample_rate_table[sample_bytes]
@@ -53,7 +54,7 @@ class AudioFrameMp3:
         len_header = 4
         len_raw_data = len(self.data_example.raw_data) - len_header
         while frame_idx < len_raw_data:
-            frame = mp3_audio_frame
+            frame = mp3AudioFrame
             frame.header = self.data_example.raw_data[frame_idx:
                                                       frame_idx + len_header]
             frame = self.init_frame_header(frame)
@@ -65,6 +66,7 @@ class AudioFrameMp3:
 
         self.data_example.count = len(frame_sizes)
         self.data_example.all_sizes = frame_sizes
+        print(len(self.data_example.all_sizes))
         return frame_idx
 
     def get_tag_length(self):

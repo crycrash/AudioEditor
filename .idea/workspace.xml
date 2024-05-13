@@ -2,16 +2,17 @@
 <project version="4">
   <component name="AnalysisUIOptions">
     <option name="ANALYZE_INJECTED_CODE" value="false" />
+    <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d02503f3-9db7-4e50-a249-db6a87bf3df2" name="Changes" comment="readme">
+    <list default="true" id="d02503f3-9db7-4e50-a249-db6a87bf3df2" name="Changes" comment="Теперь все нормально со вставкой и вырезанием">
+      <change afterPath="$PROJECT_DIR$/dataclass_wav.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/audioMP3.py" beforeDir="false" afterPath="$PROJECT_DIR$/audioMP3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataclass_MP3_frame.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataclass_MP3_frame.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataclass_mp3.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataclass_mp3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audioWav.py" beforeDir="false" afterPath="$PROJECT_DIR$/audioWav.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parseMP3.py" beforeDir="false" afterPath="$PROJECT_DIR$/parseMP3.py" afterDir="false" />
     </list>
@@ -67,6 +68,7 @@
   "keyToString": {
     "Python.audio.executor": "Run",
     "Python.audioMP3.executor": "Run",
+    "Python.audioWav.executor": "Run",
     "Python.audio_idv3.executor": "Run",
     "Python.dataclass_mp3.executor": "Run",
     "Python.main.executor": "Run",
@@ -140,7 +142,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715271955119</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Теперь все нормально со вставкой и вырезанием">
+      <option name="closed" value="true" />
+      <created>1715360185327</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715360185327</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -160,18 +170,10 @@
     <MESSAGE value="Работа через консоль. Функция вставки аудио. Функция ускорения/замедления аудио" />
     <MESSAGE value="Работа с MP3(парсинг, обрезка, вставка)" />
     <MESSAGE value="readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="readme" />
+    <MESSAGE value="Теперь все нормально со вставкой и вырезанием" />
+    <option name="LAST_COMMIT_MESSAGE" value="Теперь все нормально со вставкой и вырезанием" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/audioMP3.py</url>
-          <line>51</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="self.stHeaderFields" />
