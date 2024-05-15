@@ -1,5 +1,6 @@
 from parseMP3 import AudioFrameMp3 as frameHeader
 from pydub import AudioSegment
+from pydub import effects
 from audioWav import AudiofileWav
 
 
@@ -31,6 +32,7 @@ class AudiofileMP3:
         self.audio_data = new_data
         self.output_files(path)
         self.audio.size = end_point - start_point
+        self.path = path
 
     def splice_audio(self, path, other, start_point):
         """Вставка одного аудио файла в другой"""
@@ -44,17 +46,20 @@ class AudiofileMP3:
         self.audio_data = output_data
         self.output_files(path)
         self.audio.size += other.audio.size
+        self.path = path
 
     def speed_up_audio(self, path, speed=2.0):
         """Ускорение аудио"""
         sound = AudioSegment.from_mp3(self.path)
-        sound.export('temp.wav', format="wav")
-        temp_audio = AudiofileWav('temp.wav')
-        temp_audio.take_header_config()
-        temp_audio.speed_multiplying(speed)
-        sound = AudioSegment.from_wav('temp.wav')
-        sound.export(path, format="mp3")
+        so = sound.speedup(speed, 150, 25)
+        so.export(path, format="mp3")
+        self.path = path
+
 
 
 a = AudiofileMP3('/Users/milana/Downloads/sample4.mp3')
-a.speed_up_audio('/Users/milana/Downloads/speedtest.mp3', 0.5)
+a.crop_audio('/Users/milana/Downloads/skj123.mp3', 5, 17)
+a.speed_up_audio('/Users/milana/Downloads/skj123.mp3', 1.5)
+b = AudiofileMP3('/Users/milana/Downloads/sample-9s.mp3')
+c = AudiofileMP3('/Users/milana/Downloads/skj123.mp3')
+b.splice_audio('/Users/milana/Downloads/skjxc4.mp3', c, 2)

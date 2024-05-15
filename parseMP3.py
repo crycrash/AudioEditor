@@ -66,7 +66,6 @@ class AudioFrameMp3:
 
         self.data_example.count = len(frame_sizes)
         self.data_example.all_sizes = frame_sizes
-        print(len(self.data_example.all_sizes))
         return frame_idx
 
     def get_tag_length(self):
