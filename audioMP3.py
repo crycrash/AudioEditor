@@ -1,7 +1,5 @@
 from parseMP3 import AudioFrameMp3 as frameHeader
 from pydub import AudioSegment
-from pydub import effects
-from audioWav import AudiofileWav
 
 
 class AudiofileMP3:
@@ -17,6 +15,7 @@ class AudiofileMP3:
 
     def output_files(self, path):
         """"Вывод в файл"""
+        path = path + '.mp3'
         with open(path, 'wb') as wav_out:
             wav_out.write(self.audio_data)
 
@@ -50,16 +49,10 @@ class AudiofileMP3:
 
     def speed_up_audio(self, path, speed=2.0):
         """Ускорение аудио"""
-        sound = AudioSegment.from_mp3(self.path)
+        sound = AudioSegment.from_mp3(path)
         so = sound.speedup(speed, 150, 25)
         so.export(path, format="mp3")
+        temp = AudiofileMP3(path)
+        self.audio_data = temp.audio_data
         self.path = path
-
-
-
-a = AudiofileMP3('/Users/milana/Downloads/sample4.mp3')
-a.crop_audio('/Users/milana/Downloads/skj123.mp3', 5, 17)
-a.speed_up_audio('/Users/milana/Downloads/skj123.mp3', 1.5)
-b = AudiofileMP3('/Users/milana/Downloads/sample-9s.mp3')
-c = AudiofileMP3('/Users/milana/Downloads/skj123.mp3')
-b.splice_audio('/Users/milana/Downloads/skjxc4.mp3', c, 2)
+        self.audio.size = self.audio.size * 1 / speed
