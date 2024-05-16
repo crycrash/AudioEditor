@@ -1,5 +1,5 @@
 import struct
-from dataclass_wav import WavAudioFile as wavAudio
+from wav_audio.dataclass_wav import WavAudioFile as wavAudio
 
 
 class AudiofileWav:
@@ -33,7 +33,6 @@ class AudiofileWav:
 
     def output_files(self, path):
         """Вывод данных ы файл"""
-        path = path + '.wav'
         f = open(path, 'w+')
         f.seek(0)
         f.close()
@@ -100,7 +99,7 @@ class AudiofileWav:
                                                       stHeaderFields.
                                                       chunk_size))
         self.stHeaderFields.size_sec = end_point - start_point
-        self.output_files(path)
+        self.output_files(path + '.wav')
         self.path = path
 
     def splice_audio(self, path, other, time):
@@ -129,7 +128,7 @@ class AudiofileWav:
                                                           chunk_size))
             self.stHeaderFields.size_sec = (self.stHeaderFields.size_sec +
                                             other.stHeaderFields.size_sec)
-            self.output_files(path)
+            self.output_files(path + '.wav')
         else:
             raise Exception('Что то пошло не так')
 
@@ -156,4 +155,4 @@ class AudiofileWav:
                                                sample_rate))
         self.stHeaderFields.size_sec = (self.stHeaderFields.size_sec * 1
                                         / speed)
-        self.output_files(path)
+        self.output_files(path + '.wav')

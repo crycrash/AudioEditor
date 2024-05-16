@@ -1,4 +1,4 @@
-from parseMP3 import AudioFrameMp3 as frameHeader
+from mp3_audio.parseMP3 import AudioFrameMp3 as frameHeader
 from pydub import AudioSegment
 
 
@@ -15,7 +15,6 @@ class AudiofileMP3:
 
     def output_files(self, path):
         """"Вывод в файл"""
-        path = path + '.mp3'
         with open(path, 'wb') as wav_out:
             wav_out.write(self.audio_data)
 
@@ -29,7 +28,7 @@ class AudiofileMP3:
         frame_start = frame_start * start_point
         new_data = self.audio_data[frame_start:frame_end]
         self.audio_data = new_data
-        self.output_files(path)
+        self.output_files(path + '.mp3')
         self.audio.size = end_point - start_point
         self.path = path
 
@@ -43,7 +42,7 @@ class AudiofileMP3:
         output_data = (self.audio_data[:frame_start] + insert_data
                        + self.audio_data[frame_start:])
         self.audio_data = output_data
-        self.output_files(path)
+        self.output_files(path + '.mp3')
         self.audio.size += other.audio.size
         self.path = path
 

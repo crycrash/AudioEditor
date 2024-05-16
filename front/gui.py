@@ -6,10 +6,11 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 from pydub import AudioSegment
 
-from audioWav import AudiofileWav
-from dialog_window import TrimDialog
-from audioMP3 import AudiofileMP3
-from file_helper import FileManager
+from wav_audio.audioWav import AudiofileWav
+from front.dialog_window import TrimDialog
+from mp3_audio.audioMP3 import AudiofileMP3
+from front.file_helper import FileManager
+from back.version_handler import VersionHandler
 
 
 class GUI:
@@ -22,6 +23,7 @@ class GUI:
         self.temp_path = ''
         self.name_project = ''
         self.format = ''
+        self.version_handler = VersionHandler()
 
     def start_window(self):
         """Отображение стартового окна и кнопок"""
@@ -74,8 +76,9 @@ class GUI:
         self.name_project = simpledialog.askstring("Введите название проекта",
                                                    "Ввод")
         if self.name_project:
-            self.temp_path = self.name_project
             self.make_audio_window(previous_window, self.name_project)
+            self.version_handler.make_directory_project(self.name_project)
+            self.temp_path = self.version_handler.path + 'temp'
         else:
             print("Ввод был отменен")
 
@@ -101,6 +104,8 @@ class GUI:
         arr_buttons[1].bind("<Button-1>", lambda e: self.
                             function_button_speed(e, window))
         arr_buttons[4].bind("<Button-1>", self.function_button_save)
+        arr_buttons[2].bind("<Button-1>", lambda e: self.
+                            function_button_back(e, window))
 
     def check_activity_buttons(self, arr_buttons):
         """Проверка на активность кнопок"""
@@ -202,6 +207,8 @@ class GUI:
             self.format = 'wav'
             self.audio = AudiofileWav(self.path)
             self.plot_wav_file(window)
+        self.audio.output_files(self.temp_path + '.' + self.format)
+        self.version_handler.output_first_version(self.audio, self.format)
 
     def function_button_split(self, event, window, arr_buttons):
         """Функция вставки"""
@@ -220,6 +227,8 @@ class GUI:
                 self.plot_mp3_file(window, self.temp_path + '.mp3')
             else:
                 self.plot_wav_file(window)
+            self.version_handler.write_changes('split', path_split=path,
+                                               start=start)
         self.place_time_audio(window)
         self.check_activity_buttons(arr_buttons)
 
@@ -233,6 +242,7 @@ class GUI:
             self.plot_mp3_file(window, self.temp_path + '.mp3')
         else:
             self.plot_wav_file(window)
+        self.version_handler.write_changes('erase',start=start, end=end)
         self.place_time_audio(window)
 
     def function_button_speed(self, event, window):
@@ -245,6 +255,7 @@ class GUI:
         else:
             self.audio.speed_up_audio(self.temp_path, speed)
             self.plot_wav_file(window)
+        self.version_handler.write_changes('speed', speed=speed)
         self.place_time_audio(window)
 
     def function_button_save(self, event):
@@ -252,6 +263,19 @@ class GUI:
         file_help = FileManager()
         self.path = file_help.save_file_as('.' + self.format)
         self.audio.output_files(self.path)
+
+    def function_button_back(self, event, window):
+        audio_temp = self.version_handler.back_changes()
+        self.audio = audio_temp
+        if self.format == 'mp3':
+            self.audio.output_files(self.temp_path)
+            self.plot_mp3_file(window, self.temp_path + '.mp3')
+            self.audio.output_files(self.temp_path + '.mp3')
+        else:
+            self.audio.output_files(self.temp_path + '.mp3')
+            self.plot_wav_file(window)
+            self.audio.output_files(self.temp_path + '.wav')
+        self.place_time_audio(window)
 
 
 a = GUI()

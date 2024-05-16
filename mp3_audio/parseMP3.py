@@ -1,7 +1,7 @@
 import struct
-from config import bitrate_table, sample_rate_table
-from dataclass_mp3 import Mp3Audio as mp3Audio
-from dataclass_MP3_frame import Mp3AudioFrame as mp3AudioFrame
+from mp3_audio.config import bitrate_table, sample_rate_table
+from mp3_audio.dataclass_mp3 import Mp3Audio as mp3Audio
+from mp3_audio.dataclass_MP3_frame import Mp3AudioFrame as mp3AudioFrame
 
 
 class AudioFrameMp3:

@@ -19,4 +19,5 @@ class FileManager:
             print(f"Selected save path: {file_path}")
         else:
             print("No save path selected")
+        print(file_path)
         return file_path
