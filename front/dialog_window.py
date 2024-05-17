@@ -3,7 +3,9 @@ from tkinter import simpledialog
 
 
 class TrimDialog(simpledialog.Dialog):
+    """Класс диалоговых окон для выбора конфигурации функций"""
     def __init__(self, parent, title=None, type_dialog=None):
+        """Инициация диалогового окна"""
         self.type = type_dialog
         self.start = None
         self.end = None
@@ -12,6 +14,7 @@ class TrimDialog(simpledialog.Dialog):
         super().__init__(parent, title)
 
     def body(self, master):
+        """Создание диалогового окна"""
         if self.type == "erase":
             tk.Label(master, text="Start:").grid(row=0)
             tk.Label(master, text="End:").grid(row=1)
@@ -31,6 +34,7 @@ class TrimDialog(simpledialog.Dialog):
         return self.start_entry
 
     def apply(self):
+        """Реакция на подтверждение формы"""
         try:
             if self.type == "erase":
                 self.start = int(self.start_entry.get())

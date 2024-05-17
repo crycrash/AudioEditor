@@ -3,6 +3,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Mp3AudioFrame:
+    """Класс данных для хранения данных об MP3 фрейме"""
     header: []
     marker: int
     padded: bool

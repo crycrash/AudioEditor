@@ -2,9 +2,10 @@ from tkinter import filedialog
 
 
 class FileManager:
-
+    """Класс для работы с файлами через диалоговые окна"""
     @staticmethod
     def open_file():
+        """Открытие файла"""
         file_path = filedialog.askopenfilename(title="Select a file")
         if file_path:
             print(f"Selected file: {file_path}")
@@ -13,6 +14,7 @@ class FileManager:
 
     @staticmethod
     def save_file_as(extension):
+        """Сохранение файла"""
         file_path = filedialog.asksaveasfilename(title="Save As",
                                                  defaultextension=extension)
         if file_path:

@@ -8,21 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d02503f3-9db7-4e50-a249-db6a87bf3df2" name="Changes" comment="Зарисовка графика аудио. Функции обрезки, вставки, изменения скорости и сохранения">
-      <change afterPath="$PROJECT_DIR$/back/version_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audioMP3.py" beforeDir="false" afterPath="$PROJECT_DIR$/mp3_audio/audioMP3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audioWav.py" beforeDir="false" afterPath="$PROJECT_DIR$/wav_audio/audioWav.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/mp3_audio/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataclass_MP3_frame.py" beforeDir="false" afterPath="$PROJECT_DIR$/mp3_audio/dataclass_MP3_frame.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataclass_mp3.py" beforeDir="false" afterPath="$PROJECT_DIR$/mp3_audio/dataclass_mp3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataclass_wav.py" beforeDir="false" afterPath="$PROJECT_DIR$/wav_audio/dataclass_wav.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/dialog_window.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/file_helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/gui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/parseMP3.py" beforeDir="false" afterPath="$PROJECT_DIR$/mp3_audio/parseMP3.py" afterDir="false" />
-    </list>
+    <list default="true" id="d02503f3-9db7-4e50-a249-db6a87bf3df2" name="Changes" comment="Операция отката" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,27 +57,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.audio.executor": "Run",
-    "Python.audioMP3.executor": "Run",
-    "Python.audioWav.executor": "Run",
-    "Python.audio_idv3.executor": "Run",
-    "Python.audio_segment.executor": "Run",
-    "Python.dataclass_MP3_frame.executor": "Run",
-    "Python.dataclass_mp3.executor": "Run",
-    "Python.dialog_window.executor": "Run",
-    "Python.file_helper.executor": "Run",
-    "Python.gui.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.parseMP3.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "preferences.sourceCode"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.audio.executor&quot;: &quot;Run&quot;,
+    &quot;Python.audioMP3.executor&quot;: &quot;Run&quot;,
+    &quot;Python.audioWav.executor&quot;: &quot;Run&quot;,
+    &quot;Python.audio_idv3.executor&quot;: &quot;Run&quot;,
+    &quot;Python.audio_segment.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dataclass_MP3_frame.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dataclass_mp3.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dialog_window.executor&quot;: &quot;Run&quot;,
+    &quot;Python.file_helper.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gui.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.parseMP3.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/front" />
@@ -189,7 +175,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715790719614</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Операция отката">
+      <option name="closed" value="true" />
+      <created>1715879525356</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1715879525356</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -213,7 +207,8 @@
     <MESSAGE value="Ускорение mp3 и правки wav" />
     <MESSAGE value="Начало графического интерфейса" />
     <MESSAGE value="Зарисовка графика аудио. Функции обрезки, вставки, изменения скорости и сохранения" />
-    <option name="LAST_COMMIT_MESSAGE" value="Зарисовка графика аудио. Функции обрезки, вставки, изменения скорости и сохранения" />
+    <MESSAGE value="Операция отката" />
+    <option name="LAST_COMMIT_MESSAGE" value="Операция отката" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
