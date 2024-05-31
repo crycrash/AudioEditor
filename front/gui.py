@@ -33,7 +33,7 @@ class GUI:
     def start_buttons(self):
         """Помещение стартовых кнопок на экран"""
         button_start = self.window_helper.return_standard_button("Проекты",
-                                                                 self.window)
+                                                                 self.window, 15, 5)
         window_prod = WindowProjects(self.window, self.version_handler,
                                      self.window_helper)
         button_start.bind("<Button-1>", window_prod.make_project_window)

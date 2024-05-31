@@ -8,14 +8,17 @@ from mp3_audio.audioMP3 import AudiofileMP3
 from front.file_helper import FileManager
 from front.basic_functions_gui import BasicFunctions
 from back.help_functions import (open_file_dialog, draw_plot_back,
-                                 plot_mp3_file_back, plot_wav_file_back)
+                                 plot_mp3_file_back, plot_wav_file_back,
+                                 parse_file, find_template_info)
 from back.paths import path_user_data
 
 
 class WindowAudio:
     """Окно с аудио проектом"""
+
     def __init__(self, window, version_handler, path, name):
         """Инициация стартового окна"""
+        self.arr_buttons = None
         self.window = window
         self.time = 0
         self.audio = None
@@ -27,6 +30,7 @@ class WindowAudio:
         self.label = None
         self.window_helper = BasicFunctions()
 
+
     def open_exist_project(self):
         """Открытие уже созданного проекта"""
         audio_window = self.make_standard_window()
@@ -34,7 +38,7 @@ class WindowAudio:
             self.execute_project_wav(audio_window)
 
         f = open((path_user_data +
-                 self.name_project + "/versions.txt"), 'w')
+                  self.name_project + "/versions.txt"), 'w')
         f.close()
         self.place_buttons(audio_window)
 
@@ -66,79 +70,86 @@ class WindowAudio:
     def make_standard_window(self):
         """Создания стандартного окна с аудио"""
         self.window.withdraw()
-        audio_window = self.window_helper.standard_window(self.name_project)
+        audio_window = self.window_helper.standard_window(self.name_project,
+                                                          "1400x900")
         return audio_window
 
     def place_buttons(self, audio_window):
         """Размещение виджетов на окне с аудио"""
         (button_split, button_erase, button_speed, button_back, button_next,
-         button_save, button_exit) = self.place_all_buttons(
+         button_save, button_exit, button_template) = self.place_all_buttons(
             audio_window)
-        arr_buttons = [button_erase, button_speed, button_back, button_next,
-                       button_save, button_exit]
+        self.arr_buttons = [button_erase, button_speed, button_back,
+                           button_next,
+                       button_save, button_exit, button_template]
         self.place_time_audio(window=audio_window)
-        self.check_activity_buttons(arr_buttons)
-        self.set_button_functions(arr_buttons, button_split, audio_window)
+        self.check_activity_buttons()
+        self.set_button_functions(button_split, audio_window)
 
     def make_audio_window(self):
         """Создание окна с аудио"""
         audio_window = self.make_standard_window()
         self.place_buttons(audio_window)
 
-    def set_button_functions(self, arr_buttons, button_split, window):
+    def set_button_functions(self, button_split, window):
         """Установка функций управляющим кнопкам"""
         button_split.bind("<Button-1>", lambda e: self.function_button_split(
-            e, window, arr_buttons))
-        arr_buttons[0].bind("<Button-1>", lambda e: self.
-                            function_button_erase(e, window, arr_buttons))
-        arr_buttons[1].bind("<Button-1>", lambda e: self.
-                            function_button_speed(e, window, arr_buttons))
-        arr_buttons[4].bind("<Button-1>", self.function_button_save)
-        arr_buttons[2].bind("<Button-1>", lambda e: self.
-                            function_button_back(e, window, arr_buttons))
-        arr_buttons[3].bind("<Button-1>", lambda e: self.
-                            function_button_next(e, window, arr_buttons))
-        arr_buttons[5].bind("<Button-1>", lambda e: self.
+            e, window))
+        self.arr_buttons[0].bind("<Button-1>", lambda e: self.
+                            function_button_erase(e, window))
+        self.arr_buttons[1].bind("<Button-1>", lambda e: self.
+                            function_button_speed(e, window))
+        self.arr_buttons[4].bind("<Button-1>", self.function_button_save)
+        self.arr_buttons[2].bind("<Button-1>", lambda e: self.
+                            function_button_back(e, window))
+        self.arr_buttons[3].bind("<Button-1>", lambda e: self.
+                            function_button_next(e, window))
+        self.arr_buttons[5].bind("<Button-1>", lambda e: self.
                             function_button_exit(e, window))
+        self.arr_buttons[6].bind("<Button-1>", lambda e: self.
+                            function_button_template(e, window))
 
-    def check_activity_buttons(self, arr_buttons):
+    def check_activity_buttons(self):
         """Проверка на активность кнопок"""
         if self.time == 0:
-            for button in arr_buttons:
+            for button in self.arr_buttons:
                 button.configure(state=DISABLED)
         else:
-            for button in arr_buttons:
+            for button in self.arr_buttons:
                 button.configure(state=NORMAL)
             if not self.version_handler.check_back_activity():
-                arr_buttons[2].configure(state=DISABLED)
+                self.arr_buttons[2].configure(state=DISABLED)
             if not self.version_handler.check_next_activity():
-                arr_buttons[3].configure(state=DISABLED)
+                self.arr_buttons[3].configure(state=DISABLED)
 
     def place_all_buttons(self, audio_window):
         """Создание управляющих кнопок"""
         button_split = self.window_helper.return_standard_button("Вставить",
-                                                                 audio_window)
+                                                                 audio_window, 15, 5)
         button_erase = self.window_helper.return_standard_button("Обрезать",
-                                                                 audio_window)
+                                                                 audio_window, 15, 5)
         button_speed = self.window_helper.return_standard_button("Скорость",
-                                                                 audio_window)
+                                                                 audio_window,15, 5)
         button_back = self.window_helper.return_standard_button("Назад",
-                                                                audio_window)
+                                                                audio_window, 15, 5)
         button_next = self.window_helper.return_standard_button("Вперед",
-                                                                audio_window)
+                                                                audio_window, 15, 5)
         button_save = self.window_helper.return_standard_button("Сохранить",
-                                                                audio_window)
+                                                                audio_window,15, 5)
         button_exit = self.window_helper.return_standard_button("Выйти",
-                                                                audio_window)
+                                                                audio_window,15, 5)
+        button_template = self.window_helper.return_standard_button("Шаблоны",
+                                                                    audio_window, 15, 5)
         button_split.place(x=10, y=20)
-        button_erase.place(x=290, y=20)
-        button_speed.place(x=570, y=20)
-        button_next.place(x=850, y=20)
-        button_back.place(x=1130, y=20)
+        button_erase.place(x=190, y=20)
+        button_speed.place(x=370, y=20)
+        button_next.place(x=550, y=20)
+        button_back.place(x=730, y=20)
+        button_template.place(x=910, y=20)
         button_save.place(x=850, y=650)
         button_exit.place(x=1130, y=650)
         return (button_split, button_erase, button_speed, button_back,
-                button_next, button_save, button_exit)
+                button_next, button_save, button_exit, button_template)
 
     @staticmethod
     def draw_plot(window, times, signal_array):
@@ -181,34 +192,42 @@ class WindowAudio:
         self.audio.output_files(self.temp_path + '.' + self.format)
         self.version_handler.output_first_version(self.audio, self.format)
 
-    def function_button_split(self, event, window, arr_buttons):
+    def function_button_split(self, event, window):
         """Функция вставки"""
         if self.time == 0:
             self.first_split(window)
         else:
             path = open_file_dialog(self.format)
             dialog = TrimDialog(window, "Вставка", 'split')
-            if self.format == 'mp3':
-                other = AudiofileMP3(path)
-            else:
-                other = AudiofileWav(path)
             start = dialog.start
-            self.audio.splice_audio(self.temp_path, other, start)
-            if self.format == 'mp3':
-                self.plot_mp3_file(window, self.temp_path + '.mp3')
-            else:
-                self.plot_wav_file(window)
-            self.version_handler.write_changes('split', path_split=path,
-                                               start=start)
+            self.spliting_audio(path, window, start)
         temp_time = str(self.time) + ' seconds'
         self.label.configure(text=temp_time)
-        self.check_activity_buttons(arr_buttons)
+        self.check_activity_buttons()
 
-    def function_button_erase(self, event, window, arr_buttons):
+    def spliting_audio(self, path, window, start):
+        if self.format == 'mp3':
+            other = AudiofileMP3(path)
+        else:
+            other = AudiofileWav(path)
+
+        self.audio.splice_audio(self.temp_path, other, start)
+        if self.format == 'mp3':
+            self.plot_mp3_file(window, self.temp_path + '.mp3')
+        else:
+            self.plot_wav_file(window)
+        self.version_handler.write_changes('split', path_split=path,
+                                               start=start)
+
+
+    def function_button_erase(self, event, window):
         """Функция обрезки"""
         dialog = TrimDialog(window, "Обрезка", 'erase')
         start = dialog.start
         end = dialog.end
+        self.erasing_audio(start, end, window)
+
+    def erasing_audio(self, start, end, window):
         self.audio.crop_audio(self.temp_path, start, end)
         if self.format == 'mp3':
             self.plot_mp3_file(window, self.temp_path + '.mp3')
@@ -217,12 +236,15 @@ class WindowAudio:
         self.version_handler.write_changes('erase', start=start, end=end)
         temp_time = str(self.time) + ' seconds'
         self.label.configure(text=temp_time)
-        self.check_activity_buttons(arr_buttons)
+        self.check_activity_buttons()
 
-    def function_button_speed(self, event, window, arr_buttons):
+    def function_button_speed(self, event, window):
         """Функция изменения скорости"""
         dialog = TrimDialog(window, "Изменение скорости", 'speed')
         speed = dialog.start
+        self.speeding_audio(window, speed)
+
+    def speeding_audio(self, window, speed):
         if self.format == 'mp3':
             self.audio.speed_up_audio(self.temp_path + '.mp3', speed)
             self.plot_mp3_file(window, self.temp_path + '.mp3')
@@ -232,7 +254,7 @@ class WindowAudio:
         self.version_handler.write_changes('speed', speed=speed)
         temp_time = str(self.time) + ' seconds'
         self.label.configure(text=temp_time)
-        self.check_activity_buttons(arr_buttons)
+        self.check_activity_buttons()
 
     def function_button_save(self, event):
         """Функция сохранения"""
@@ -240,12 +262,12 @@ class WindowAudio:
         self.path = file_help.save_file_as('.' + self.format)
         self.audio.output_files(self.path)
 
-    def function_button_back(self, event, window, arr_buttons):
+    def function_button_back(self, event, window):
         """Функция отката изменений"""
         audio_temp = self.version_handler.back_changes()
-        self.process_changes(audio_temp, window, arr_buttons)
+        self.process_changes(audio_temp, window)
 
-    def process_changes(self, audio_temp, window, arr_buttons):
+    def process_changes(self, audio_temp, window):
         """Функция обработки изменений"""
         self.audio = audio_temp
         if self.format == 'mp3':
@@ -256,13 +278,73 @@ class WindowAudio:
             self.plot_wav_file(window)
         temp_time = str(self.time) + ' seconds'
         self.label.configure(text=temp_time)
-        self.check_activity_buttons(arr_buttons)
+        self.check_activity_buttons()
 
-    def function_button_next(self, event, window, arr_buttons):
+    def function_button_next(self, event, window):
         """Функция возвращения изменений"""
         audio_temp = self.version_handler.next_changes()
-        self.process_changes(audio_temp, window, arr_buttons)
+        self.process_changes(audio_temp, window)
 
     def function_button_exit(self, event, window):
         window.destroy()
         self.window.deiconify()
+
+    def function_button_template(self, event, window):
+        """Функция возвращения изменений"""
+
+        template_window = self.window_helper.standard_window('Шаблоны',
+                                                             "400x300")
+        button_new_template = self.window_helper.return_standard_button(
+            'Добавить', template_window, 5, 3)
+        button_new_template.bind("<Button-1>", lambda e: self.
+                                 function_button_new_template(e,
+                                                              template_window))
+
+        button_new_template.pack(anchor='ne')
+        templates, names = parse_file('templates.txt')
+        for i in names:
+            button = self.window_helper.return_standard_button(i,
+                                                            template_window,
+                                                      5, 3)
+            button.bind("<Button-1>", lambda e, b=button:
+            self.execute_template(e, templates, b, window))
+            button.pack(anchor="nw")
+
+    def function_button_new_template(self, event, window):
+        dialog_name = TrimDialog(window, "Название", 'name')
+        name_project = dialog_name.start
+        dialog = TrimDialog(window, "Обрезка", 'erase')
+        erase_start = dialog.start
+        erase_end = dialog.end
+        path = open_file_dialog(self.format)
+        split_start = None
+        if path != '':
+            dialog = TrimDialog(window, "Вставка", 'split')
+            split_start = dialog.start
+        else:
+            path = None
+        dialog = TrimDialog(window, "Скорость", 'speed')
+        speed_count = dialog.start
+        line = ''
+        with (open('templates.txt', 'a+') as file):
+            line += name_project + ' '
+            line += str(erase_start) + ' ' + str(erase_end) + ' ' + str(path) + ' ' + str(split_start) + ' ' + str(speed_count) + '\n'
+            file.write(line)
+
+    def execute_template(self, event, templates, name_template, window):
+        info = find_template_info(templates, name_template['text'])
+        if info['start_time'] is not None:
+            start = float(info['start_time'])
+            end = float(info['end_time'])
+            self.erasing_audio(start, end, window)
+        if info['insert_path'] is not None:
+            path = info['insert_path']
+            start = float(info['insert_time'])
+            self.spliting_audio(path, window, start)
+            temp_time = str(self.time) + ' seconds'
+            self.label.configure(text=temp_time)
+            self.check_activity_buttons()
+        if info['speed'] is not None:
+            speed = float(info['speed'])
+            self.speeding_audio(window, speed)
+

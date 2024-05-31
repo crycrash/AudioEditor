@@ -8,7 +8,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d02503f3-9db7-4e50-a249-db6a87bf3df2" name="Changes" comment="Операция отката" />
+    <list default="true" id="d02503f3-9db7-4e50-a249-db6a87bf3df2" name="Changes" comment="Откат, возврат. Все проекты помещаются на окне. Открытие проекта по кнопке.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/help_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/back/help_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/basic_functions_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/basic_functions_gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/dialog_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/dialog_window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/window_audio_play.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/window_audio_play.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/window_projects.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/window_projects.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,6 +67,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Python.__init__.executor&quot;: &quot;Run&quot;,
     &quot;Python.audio.executor&quot;: &quot;Run&quot;,
     &quot;Python.audioMP3.executor&quot;: &quot;Run&quot;,
     &quot;Python.audioWav.executor&quot;: &quot;Run&quot;,
@@ -69,8 +78,10 @@
     &quot;Python.dialog_window.executor&quot;: &quot;Run&quot;,
     &quot;Python.file_helper.executor&quot;: &quot;Run&quot;,
     &quot;Python.gui.executor&quot;: &quot;Run&quot;,
+    &quot;Python.jibhu.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;Python.parseMP3.executor&quot;: &quot;Run&quot;,
+    &quot;Python.window_audio_play.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
@@ -183,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715879525356</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Откат, возврат. Все проекты помещаются на окне. Открытие проекта по кнопке.">
+      <option name="closed" value="true" />
+      <created>1715970492967</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1715970492967</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -208,12 +227,14 @@
     <MESSAGE value="Начало графического интерфейса" />
     <MESSAGE value="Зарисовка графика аудио. Функции обрезки, вставки, изменения скорости и сохранения" />
     <MESSAGE value="Операция отката" />
-    <option name="LAST_COMMIT_MESSAGE" value="Операция отката" />
+    <MESSAGE value="Откат, возврат. Все проекты помещаются на окне. Открытие проекта по кнопке." />
+    <option name="LAST_COMMIT_MESSAGE" value="Откат, возврат. Все проекты помещаются на окне. Открытие проекта по кнопке." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="self.stHeaderFields" />
+        <watch expression="self.data[1]" />
       </configuration>
     </watches-manager>
   </component>

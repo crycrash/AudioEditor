@@ -1,4 +1,5 @@
 import os
+import re
 from datetime import datetime
 from tkinter import filedialog
 
@@ -70,3 +71,38 @@ def get_folders_with_creation_dates(parent_folder):
                              strftime('%Y-%m-%d %H:%M:%S'))
             folders_with_dates.append((folder_name, creation_date))
     return folders_with_dates
+
+
+def parse_file(filepath):
+    result = []
+    names = []
+    with open(filepath, 'r') as file:
+        for line in file:
+            parts = line.split(maxsplit=1)
+            if len(parts) < 2:
+                continue
+            template_name, rest = parts
+            rest_parts = rest.split()
+            start_time = rest_parts[0] if rest_parts[0] != 'None' else None
+            end_time = rest_parts[1] if rest_parts[1] != 'None' else None
+            insert_path = rest_parts[2] if rest_parts[2] != 'None' else None
+            insert_time = rest_parts[3] if rest_parts[3] != 'None' else None
+            speed = rest_parts[4] if len(rest_parts) > 4 and rest_parts[
+                4] != 'None' else None
+            names.append(template_name)
+            result.append({
+                'template_name': template_name,
+                'start_time': start_time,
+                'end_time': end_time,
+                'insert_path': insert_path,
+                'insert_time': insert_time,
+                'speed': speed
+            })
+    return result, names
+
+
+def find_template_info(result, template_name):
+    for template in result:
+        if template['template_name'] == template_name:
+            return template
+    return None

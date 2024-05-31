@@ -4,6 +4,7 @@ from tkinter import simpledialog
 
 class TrimDialog(simpledialog.Dialog):
     """Класс диалоговых окон для выбора конфигурации функций"""
+
     def __init__(self, parent, title=None, type_dialog=None):
         """Инициация диалогового окна"""
         self.type = type_dialog
@@ -30,6 +31,10 @@ class TrimDialog(simpledialog.Dialog):
             tk.Label(master, text="Speed:").grid(row=0)
             self.start_entry = tk.Entry(master)
             self.start_entry.grid(row=0, column=1)
+        elif self.type == 'name':
+            tk.Label(master, text="Name:").grid(row=0)
+            self.start_entry = tk.Entry(master)
+            self.start_entry.grid(row=0, column=1)
 
         return self.start_entry
 
@@ -39,9 +44,13 @@ class TrimDialog(simpledialog.Dialog):
             if self.type == "erase":
                 self.start = int(self.start_entry.get())
                 self.end = int(self.end_entry.get())
+
             elif self.type == 'speed':
                 self.start = float(self.start_entry.get())
+            elif self.type == 'name':
+                self.start = str(self.start_entry.get())
             else:
                 self.start = int(self.start_entry.get())
+
         except ValueError:
             pass
