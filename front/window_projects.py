@@ -48,14 +48,15 @@ class WindowProjects:
         frame = Frame(window)
         frame.grid(row=0, column=0)
         folders = get_folders_with_creation_dates(parent_folder)
-        for i, (folder_name, creation_date) in enumerate(folders):
-            btn = Button(frame, text=folder_name)
+        for i, (name, creation_date) in enumerate(folders):
+            btn = Button(frame, text=name)
             btn.grid(row=i, column=0, padx=5, pady=5, ipadx=20,
                      ipady=10, sticky=W)
             lbl = Label(frame, text=creation_date)
             lbl.grid(row=i, column=1, padx=5, pady=5, sticky=W)
-            btn.bind("<Button-1>", lambda e: self.open_project(
-               folder_name, window, e))
+            btn.bind("<Button-1>",
+                     lambda e, folder_name=name: self.open_project(
+                         folder_name, window, e))
 
     def open_project(self, folder_name, previous_window, event):
         """Открытие созданного проекта"""
