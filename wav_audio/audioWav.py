@@ -18,7 +18,6 @@ class AudiofileWav:
         header_size = 44
         with open(self.path, 'rb') as wav_in:
             self.header = wav_in.read(header_size)
-            # wav_in.seek(header_size, os.SEEK_CUR)
             self.audio_data = wav_in.read()
             self.check_wav()
         self.take_header_config()
@@ -33,9 +32,6 @@ class AudiofileWav:
 
     def output_files(self, path):
         """Вывод данных ы файл"""
-        f = open(path, 'w+')
-        f.seek(0)
-        f.close()
         with open(path, 'wb') as wav_out:
             wav_out.write(self.header)
             wav_out.write(self.audio_data)
@@ -99,7 +95,7 @@ class AudiofileWav:
                                                       stHeaderFields.
                                                       chunk_size))
         self.stHeaderFields.size_sec = end_point - start_point
-        self.output_files(path + '.wav')
+        self.output_files(path)
         self.path = path
 
     def splice_audio(self, path, other, time):
@@ -128,7 +124,7 @@ class AudiofileWav:
                                                           chunk_size))
             self.stHeaderFields.size_sec = (self.stHeaderFields.size_sec +
                                             other.stHeaderFields.size_sec)
-            self.output_files(path + '.wav')
+            self.output_files(path)
         else:
             raise Exception('Что то пошло не так')
 
@@ -155,4 +151,4 @@ class AudiofileWav:
                                                sample_rate))
         self.stHeaderFields.size_sec = (self.stHeaderFields.size_sec * 1
                                         / speed)
-        self.output_files(path + '.wav')
+        self.output_files(path)

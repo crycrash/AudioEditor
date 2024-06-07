@@ -170,13 +170,40 @@ class WindowAudio:
                 button_next, button_save, button_exit, button_temp,
                 button_equalizer)
 
-    @staticmethod
-    def draw_plot(window, times, signal_array):
+    def draw_plot(self, window, times, signal_array):
         """Рисование графика"""
         figure = draw_plot_back(times, signal_array)
-        canvas = FigureCanvasTkAgg(figure, window)
-        canvas.draw()
-        canvas.get_tk_widget().place(x=10, y=150)
+        canvas_plot = FigureCanvasTkAgg(figure, window)
+        canvas_plot.draw()
+        label = Label(window, text="", width=20)
+        canvas_plot.get_tk_widget().place(x=10, y=150)
+
+        def update_coordinates(event=None):
+            try:
+                x, y = event.x, event.y
+                label.place(x=x + 10, y=y + 150)
+                x, y = self.count_coordinates(x, y)
+                label.config(text="X: {}, Y: {}".format(x, y))
+                window.after(500,
+                             update_coordinates)
+            except AttributeError:
+                pass
+
+        canvas_plot.get_tk_widget().bind('<Motion>', update_coordinates)
+
+    def count_coordinates(self, x, y):
+
+        canvas_width = 780
+        canvas_height = 300
+
+        time_per_pixel = self.time / canvas_width
+        x_coord = int(x * time_per_pixel)
+
+        amplitude_per_pixel = 30000 / canvas_height
+        y_coord = 15000 - (
+                    y * amplitude_per_pixel)
+
+        return x_coord, y_coord
 
     def plot_mp3_file(self, window, path):
         """Вычисление данных для рисования графика MP3"""
@@ -204,11 +231,13 @@ class WindowAudio:
             self.format = 'mp3'
             self.audio = AudiofileMP3(self.path)
             self.plot_mp3_file(window, self.path)
+            self.audio.output_files(self.temp_path + '.' + self.format)
         else:
             self.format = 'wav'
             self.audio = AudiofileWav(self.path)
             self.plot_wav_file(window)
-        self.audio.output_files(self.temp_path + '.' + self.format)
+            self.temp_path += self.wav_format
+            self.audio.output_files(self.temp_path)
         self.version_handler.output_first_version(self.audio, self.format)
 
     def function_button_split(self, event, window):
@@ -291,7 +320,7 @@ class WindowAudio:
             self.audio.output_files(self.temp_path + self.mp3_format)
             self.plot_mp3_file(window, self.temp_path + self.mp3_format)
         else:
-            self.audio.output_files(self.temp_path + self.wav_format)
+            self.audio.output_files(self.temp_path)
             self.plot_wav_file(window)
         temp_time = str(self.time) + ' seconds'
         self.label.configure(text=temp_time)
@@ -370,11 +399,11 @@ class WindowAudio:
 
     def function_button_equalizer(self, event, window):
         """Вызов эквалайзера"""
-        equal = Equalizer(self.temp_path, self.format)
+        equal = Equalizer(self.temp_path, self.format, window)
         equal.visualizing_equalizer()
         if self.format == 'mp3':
             self.audio.output_files(self.temp_path + self.mp3_format)
             self.plot_mp3_file(window, self.temp_path + self.mp3_format)
         else:
-            self.audio.output_files(self.temp_path + self.wav_format)
+            self.audio.output_files(self.temp_path)
             self.plot_wav_file(window)

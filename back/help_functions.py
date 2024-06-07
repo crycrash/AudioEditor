@@ -1,11 +1,10 @@
 import os
-import re
 from datetime import datetime
 from tkinter import filedialog
 
 import numpy as np
 from matplotlib.figure import Figure
-from pydub import AudioSegment
+from pydub import AudioSegment#plotty
 
 
 def open_file_dialog(type_file='all_types'):

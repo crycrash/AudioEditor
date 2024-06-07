@@ -32,7 +32,8 @@ class WindowProjects:
     def make_project_window(self, event):
         """Создание окна с проектами"""
         self.window.withdraw()
-        project_window = self.window_helper.standard_window("Проекты", "1400x900")
+        project_window = self.window_helper.standard_window("Проекты",
+                                                            "1400x900")
         project_window.configure(background="blue")
         button_start = (self.window_helper.
                         return_standard_button("Добавить",
