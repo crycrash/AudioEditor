@@ -2,7 +2,7 @@ import tkinter as tk
 from pydub import AudioSegment
 from scipy.signal import butter, lfilter
 import numpy as np
-from basic_functions_gui import BasicFunctions
+from front.basic_functions_gui import BasicFunctions
 import plotly.graph_objs as go
 import dash
 from dash import dcc
@@ -21,12 +21,12 @@ class Equalizer:
         self.mid_slider = None
         self.high_slider = None
         self.audio = None
+        self.wav_format = 'wav'
         self.path = path_audio
         self.format = format_audio
         self.open_audio()
         self.helper = BasicFunctions()
         self.window = window
-        self.wav_format = 'wav'
 
     def open_audio(self):
         """Открытие файла"""
@@ -120,39 +120,52 @@ class Equalizer:
         webview.start()
 
     def create_figure(self):
-        """Создание фигур на графике"""
         samples = np.array(self.audio.get_array_of_samples())
         sample_rate = np.fft.rfftfreq(len(samples), 1 / self.audio.frame_rate)
         fft_orig = np.abs(np.fft.rfft(samples))
         filtered_audio = self.execute_filtration()
         filtered_samples = np.array(filtered_audio.get_array_of_samples())
         fft_filtered = np.abs(np.fft.rfft(filtered_samples))
+        amplitude_level = 20
+        fig = go.Figure()
 
-        figure = go.Figure()
-        self.set_trace(figure, sample_rate, consts["amplitude"], fft_orig)
-        self.set_trace(figure, sample_rate, consts["amplitude"], fft_filtered)
-        figure.update_layout(
+        fig.add_trace(go.Scatter(
+            x=sample_rate,
+            y=amplitude_level * np.log10(fft_orig),
+            mode='lines',
+            name='Original',
+            line=dict(color='blue')
+        ))
+
+        fig.add_trace(go.Scatter(
+            x=sample_rate,
+            y=amplitude_level * np.log10(fft_filtered),
+            mode='lines',
+            name='Filtered',
+            line=dict(color='red')
+        ))
+
+        fig.update_layout(
             title='Frequency Response',
             xaxis=dict(
                 title='Frequency (Hz)',
                 type='log',
-                range=[np.log10(consts["amplitude"]),
-                       np.log10(max(sample_rate))]
+                range=[np.log10(20), np.log10(max(sample_rate))]
             ),
             yaxis=dict(title='Amplitude (dB)'),
             legend=dict(x=0, y=1)
         )
-        return figure
+        return fig
 
     @staticmethod
-    def set_trace(figure, sample_rate, amplitude_level, fft):
+    def set_trace(figure, sample_rate, amplitude_level, fft, color, name):
         """Добавление фигуры на график"""
         figure.add_trace(go.Scatter(
             x=sample_rate,
             y=amplitude_level * np.log10(fft),
             mode='lines',
-            name='Filtered',
-            line=dict(color='red')
+            name=name,
+            line=dict(color=color)
         ))
 
     def execute_filtration(self):

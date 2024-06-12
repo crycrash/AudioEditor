@@ -28,6 +28,7 @@ class AudiofileWav:
         fmt_string = b'fmt '
         if (self.header[0:4] != riff_string) or \
                 (self.header[12:16] != fmt_string):
+            print(self.header[12:16])
             raise Exception("Not valid")
 
     def output_files(self, path):
@@ -64,9 +65,8 @@ class AudiofileWav:
 
     def count_size_file(self):
         """Подсчет длины аудио фрагмента"""
-        size_file = (self.stHeaderFields.sub_chunk_2_size
-                     / (
-                             self.stHeaderFields.bits_per_sample / 8) /
+        count_bytes = self.stHeaderFields.bits_per_sample / 8
+        size_file = (self.stHeaderFields.sub_chunk_2_size / count_bytes /
                      self.stHeaderFields.sample_rate
                      / self.stHeaderFields.num_channels)
         return size_file
@@ -76,14 +76,14 @@ class AudiofileWav:
         if (start_point > self.stHeaderFields.size_sec or end_point >
                 self.stHeaderFields.size_sec):
             raise Exception('You have gone beyond the allowed length')
-
+        size_header = 36
         count = len(self.audio_data) // self.stHeaderFields.size_sec
         self.audio_data = self.audio_data[int(start_point * count):
                                           int(end_point * count)]
         self.stHeaderFields.sub_chunk_2_size = (self.stHeaderFields.
                                                 sub_chunk_2_size // 2)
         self.stHeaderFields.chunk_size = (self.stHeaderFields.
-                                          sub_chunk_2_size + 36)
+                                          sub_chunk_2_size + size_header)
         self.header = self.header.replace(self.header[40:44],
                                           struct.pack('<L',
                                                       self.
@@ -103,6 +103,7 @@ class AudiofileWav:
         if time > int(self.stHeaderFields.size_sec):
             raise Exception('You have gone beyond the allowed length')
         if isinstance(other, AudiofileWav):
+            size_header = 36
             count = len(self.audio_data) // self.stHeaderFields.size_sec
             self.audio_data = (self.audio_data[:int(count * time)] +
                                other.audio_data
@@ -111,7 +112,7 @@ class AudiofileWav:
                     self.stHeaderFields.sub_chunk_2_size
                     + other.stHeaderFields.sub_chunk_2_size)
             self.stHeaderFields.chunk_size = (self.stHeaderFields.
-                                              sub_chunk_2_size + 36)
+                                              sub_chunk_2_size + size_header)
             self.header = self.header.replace(self.header[40:44],
                                               struct.pack('<L',
                                                           self.
@@ -125,18 +126,16 @@ class AudiofileWav:
             self.stHeaderFields.size_sec = (self.stHeaderFields.size_sec +
                                             other.stHeaderFields.size_sec)
             self.output_files(path)
-        else:
-            raise Exception('Что то пошло не так')
 
     def speed_up_audio(self, path, speed):
         """Ускорение или замедление аудио дорожки"""
+        size_header = 36
         self.stHeaderFields.sample_rate = int(
             self.stHeaderFields.sample_rate * speed)
         self.stHeaderFields.sub_chunk_2_size = int(
             self.stHeaderFields.sub_chunk_2_size * 1 / speed)
         self.stHeaderFields.chunk_size = (
-                self.stHeaderFields.sub_chunk_2_size + 36)
-
+                self.stHeaderFields.sub_chunk_2_size + size_header)
         self.header = self.header.replace(self.header[40:44],
                                           struct.pack('<L',
                                                       self.stHeaderFields.

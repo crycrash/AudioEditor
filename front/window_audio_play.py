@@ -10,7 +10,8 @@ from front.basic_functions_gui import BasicFunctions
 from front.equalizer import Equalizer
 from back.help_functions import (open_file_dialog, draw_plot_back,
                                  plot_mp3_file_back, plot_wav_file_back,
-                                 parse_file, find_template_info)
+                                 parse_file_templates, find_template_info,
+                                 count_coordinates)
 from back.paths import path_user_data
 
 
@@ -38,20 +39,21 @@ class WindowAudio:
         audio_window = self.make_standard_window()
         if self.execute_project_mp3(audio_window) == -1:
             self.execute_project_wav(audio_window)
-        f = open((path_user_data +
-                  self.name_project + "/versions.txt"), 'w')
+        version_file = path_user_data + self.name_project + "/versions.txt"
+        f = open(version_file, 'w')
         f.close()
         self.place_buttons(audio_window)
 
     def execute_project_mp3(self, audio_window):
         """Обработка mp3 проекта при повторном открытии"""
         try:
-            open(self.temp_path + '.mp3', 'r')
-            self.temp_path += '.mp3'
+            format_audio = 'mp3'
+            open(self.temp_path + self.mp3_format, 'r')
+            self.temp_path += self.mp3_format
             self.version_handler.first_path = \
                 (path_user_data + self.name_project + "/first.mp3")
-            self.version_handler.format = 'mp3'
-            self.format = 'mp3'
+            self.version_handler.format = format_audio
+            self.format = format_audio
             self.audio = AudiofileMP3(self.temp_path)
             self.plot_mp3_file(audio_window, self.temp_path)
         except FileNotFoundError:
@@ -59,12 +61,13 @@ class WindowAudio:
 
     def execute_project_wav(self, audio_window):
         """Обработка wav проекта при повторном открытии"""
+        format_audio = 'wav'
         self.temp_path += self.wav_format
         self.version_handler.first_path = \
             (path_user_data +
              self.name_project + "/first.wav")
-        self.version_handler.format = 'wav'
-        self.format = 'wav'
+        self.version_handler.format = format_audio
+        self.format = format_audio
         self.audio = AudiofileWav(self.temp_path)
         self.plot_wav_file(audio_window)
 
@@ -127,8 +130,8 @@ class WindowAudio:
             if not self.version_handler.check_next_activity():
                 self.arr_buttons[3].configure(state=DISABLED)
 
-    def place_all_buttons(self, audio_window):
-        """Создание управляющих кнопок"""
+    def bind_button_functions(self, audio_window):
+        """Определение функций кнопкам"""
         button_split = self.window_helper.return_standard_button("Вставить",
                                                                  audio_window,
                                                                  15, 5)
@@ -157,6 +160,15 @@ class WindowAudio:
             "Эквалайзер",
             audio_window,
             15, 5)
+        return (button_split, button_erase, button_speed, button_back,
+                button_next, button_save, button_exit, button_temp,
+                button_equalizer)
+
+    def place_all_buttons(self, audio_window):
+        """Создание управляющих кнопок"""
+        (button_split, button_erase, button_speed, button_back,
+         button_next, button_save, button_exit, button_temp, button_equalizer)\
+            = self.bind_button_functions(audio_window)
         button_split.place(x=10, y=20)
         button_erase.place(x=190, y=20)
         button_speed.place(x=370, y=20)
@@ -182,7 +194,7 @@ class WindowAudio:
             try:
                 x, y = event.x, event.y
                 label.place(x=x + 10, y=y + 150)
-                x, y = self.count_coordinates(x, y)
+                x, y = count_coordinates(self.time, x, y)
                 label.config(text="X: {}, Y: {}".format(x, y))
                 window.after(500,
                              update_coordinates)
@@ -190,20 +202,6 @@ class WindowAudio:
                 pass
 
         canvas_plot.get_tk_widget().bind('<Motion>', update_coordinates)
-
-    def count_coordinates(self, x, y):
-
-        canvas_width = 780
-        canvas_height = 300
-
-        time_per_pixel = self.time / canvas_width
-        x_coord = int(x * time_per_pixel)
-
-        amplitude_per_pixel = 30000 / canvas_height
-        y_coord = 15000 - (
-                    y * amplitude_per_pixel)
-
-        return x_coord, y_coord
 
     def plot_mp3_file(self, window, path):
         """Вычисление данных для рисования графика MP3"""
@@ -345,9 +343,8 @@ class WindowAudio:
         button_new_template.bind("<Button-1>", lambda e: self.
                                  function_button_new_template(e,
                                                               template_window))
-
         button_new_template.pack(anchor='ne')
-        templates, names = parse_file('templates.txt')
+        templates, names = parse_file_templates('templates.txt')
         for i in names:
             button = self.window_helper.return_standard_button(i,
                                                                template_window,

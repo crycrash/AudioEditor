@@ -1,6 +1,7 @@
 from pathlib import Path
 from wav_audio.audioWav import AudiofileWav
 from mp3_audio.audioMP3 import AudiofileMP3
+from back.paths import path_user_data
 
 
 class VersionHandler:
@@ -17,8 +18,7 @@ class VersionHandler:
 
     def make_directory_project(self, project_name):
         """Создание папки проекта"""
-        self.path = ('/Users/milana/PycharmProjects/audioEditor/users_data/'
-                     + project_name)
+        self.path = path_user_data + project_name
         Path(self.path).mkdir(parents=True, exist_ok=True)
         self.path += '/'
         self.make_list_versions()

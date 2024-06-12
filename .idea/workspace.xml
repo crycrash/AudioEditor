@@ -8,15 +8,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d02503f3-9db7-4e50-a249-db6a87bf3df2" name="Changes" comment="Эквалайзер">
-      <change afterPath="$PROJECT_DIR$/back/equalizer_constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tempo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="d02503f3-9db7-4e50-a249-db6a87bf3df2" name="Changes" comment="Обновленные графики">
+      <change afterPath="$PROJECT_DIR$/front/templates.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/tests_audioMP3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/tests_audioWav.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/tests_basic_functions_gui.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/tests_dialog_window.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/tests_help_functions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/tests_parseMP3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/tests_version_handler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/help_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/back/help_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/paths.py" beforeDir="false" afterPath="$PROJECT_DIR$/back/paths.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/version_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/back/version_handler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/equalizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/equalizer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/window_audio_play.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/window_audio_play.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/window_projects.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/window_projects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mp3_audio/audioMP3.py" beforeDir="false" afterPath="$PROJECT_DIR$/mp3_audio/audioMP3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mp3_audio/dataclass_MP3_frame.py" beforeDir="false" afterPath="$PROJECT_DIR$/mp3_audio/dataclass_MP3_frame.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mp3_audio/dataclass_mp3.py" beforeDir="false" afterPath="$PROJECT_DIR$/mp3_audio/dataclass_mp3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mp3_audio/parseMP3.py" beforeDir="false" afterPath="$PROJECT_DIR$/mp3_audio/parseMP3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wav_audio/audioWav.py" beforeDir="false" afterPath="$PROJECT_DIR$/wav_audio/audioWav.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,34 +77,53 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.__init__.executor&quot;: &quot;Run&quot;,
-    &quot;Python.audio.executor&quot;: &quot;Run&quot;,
-    &quot;Python.audioMP3.executor&quot;: &quot;Run&quot;,
-    &quot;Python.audioWav.executor&quot;: &quot;Run&quot;,
-    &quot;Python.audio_idv3.executor&quot;: &quot;Run&quot;,
-    &quot;Python.audio_segment.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dataclass_MP3_frame.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dataclass_mp3.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dialog_window.executor&quot;: &quot;Run&quot;,
-    &quot;Python.equalizer.executor&quot;: &quot;Run&quot;,
-    &quot;Python.file_helper.executor&quot;: &quot;Run&quot;,
-    &quot;Python.gui.executor&quot;: &quot;Run&quot;,
-    &quot;Python.jibhu.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.parseMP3.executor&quot;: &quot;Run&quot;,
-    &quot;Python.player_audio.executor&quot;: &quot;Run&quot;,
-    &quot;Python.tempo.executor&quot;: &quot;Run&quot;,
-    &quot;Python.window_audio_play.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for test_gui.TestGUI.executor": "Run",
+    "Python tests.Python tests for test_gui.TestGUI.test_start_buttons.executor": "Run",
+    "Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_crop_audio_invalid.executor": "Run",
+    "Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_crop_audio_valid.executor": "Run",
+    "Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_init.executor": "Run",
+    "Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_output_files.executor": "Run",
+    "Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_speed_up_audio.executor": "Run",
+    "Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_splice_audio_invalid.executor": "Run",
+    "Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_splice_audio_valid.executor": "Run",
+    "Python tests.Python tests for tests_audioWav.TestAudiofileWav.test_take_header_config.executor": "Run",
+    "Python tests.Python tests in test_gui.py.executor": "Run",
+    "Python tests.Python tests in tests_audioMP3.py.executor": "Run",
+    "Python tests.Python tests in tests_audioWav.py.executor": "Run",
+    "Python.__init__.executor": "Run",
+    "Python.audio.executor": "Run",
+    "Python.audioMP3.executor": "Run",
+    "Python.audioWav.executor": "Run",
+    "Python.audio_idv3.executor": "Run",
+    "Python.audio_segment.executor": "Run",
+    "Python.dataclass_MP3_frame.executor": "Run",
+    "Python.dataclass_mp3.executor": "Run",
+    "Python.dialog_window.executor": "Run",
+    "Python.equalizer.executor": "Run",
+    "Python.file_helper.executor": "Run",
+    "Python.gui.executor": "Run",
+    "Python.jibhu.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.parseMP3.executor": "Run",
+    "Python.paths.executor": "Run",
+    "Python.player_audio.executor": "Run",
+    "Python.tempo.executor": "Run",
+    "Python.window_audio_play.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/milana/PycharmProjects/audioEditor/tests",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "preferences.sourceCode"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/front" />
       <recent name="$PROJECT_DIR$/mp3_audio" />
@@ -102,6 +131,92 @@
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/wav" />
     </key>
+  </component>
+  <component name="RunManager" selected="Python tests.Python tests for tests_audioWav.TestAudiofileWav.test_take_header_config">
+    <configuration name="Python tests for tests_audioMP3.TestAudiofileMP3.test_crop_audio_invalid" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="audioEditor" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests_audioMP3.TestAudiofileMP3.test_crop_audio_invalid&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for tests_audioMP3.TestAudiofileMP3.test_speed_up_audio" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="audioEditor" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests_audioMP3.TestAudiofileMP3.test_speed_up_audio&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for tests_audioMP3.TestAudiofileMP3.test_splice_audio_invalid" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="audioEditor" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests_audioMP3.TestAudiofileMP3.test_splice_audio_invalid&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for tests_audioMP3.TestAudiofileMP3.test_splice_audio_valid" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="audioEditor" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests_audioMP3.TestAudiofileMP3.test_splice_audio_valid&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for tests_audioWav.TestAudiofileWav.test_take_header_config" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="audioEditor" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests_audioWav.TestAudiofileWav.test_take_header_config&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Python tests for tests_audioWav.TestAudiofileWav.test_take_header_config" />
+        <item itemvalue="Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_speed_up_audio" />
+        <item itemvalue="Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_splice_audio_invalid" />
+        <item itemvalue="Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_splice_audio_valid" />
+        <item itemvalue="Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_crop_audio_invalid" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -223,7 +338,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717180029591</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Обновленные графики">
+      <option name="closed" value="true" />
+      <created>1717771726014</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1717771726014</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -251,9 +374,19 @@
     <MESSAGE value="Откат, возврат. Все проекты помещаются на окне. Открытие проекта по кнопке." />
     <MESSAGE value="Шаблоны" />
     <MESSAGE value="Эквалайзер" />
-    <option name="LAST_COMMIT_MESSAGE" value="Эквалайзер" />
+    <MESSAGE value="Обновленные графики" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновленные графики" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/front/window_audio_play.py</url>
+          <line>233</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="self.stHeaderFields" />

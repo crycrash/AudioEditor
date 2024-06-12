@@ -4,7 +4,7 @@ from tkinter import filedialog
 
 import numpy as np
 from matplotlib.figure import Figure
-from pydub import AudioSegment#plotty
+from pydub import AudioSegment
 
 
 def open_file_dialog(type_file='all_types'):
@@ -72,7 +72,8 @@ def get_folders_with_creation_dates(parent_folder):
     return folders_with_dates
 
 
-def parse_file(filepath):
+def parse_file_templates(filepath):
+    """Обработка шаблонов"""
     result = []
     names = []
     with open(filepath, 'r') as file:
@@ -105,3 +106,15 @@ def find_template_info(result, template_name):
         if template['template_name'] == template_name:
             return template
     return None
+
+
+def count_coordinates(time, x, y):
+    canvas_width = 780
+    canvas_height = 300
+    time_per_pixel = time / canvas_width
+    x_coord = int(x * time_per_pixel)
+    all_size = 30000
+    amplitude_per_pixel = all_size / canvas_height
+    half_size = 15000
+    y_coord = half_size - y * amplitude_per_pixel
+    return x_coord, y_coord

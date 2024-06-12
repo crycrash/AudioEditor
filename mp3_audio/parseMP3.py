@@ -33,14 +33,16 @@ class AudioFrameMp3:
         frame.padded = bool(frame_header[2] & 0b10)
         bit_rate_bits = frame_header[2] & 0xf0
         if (frame_header[1] & 0b00001110) != 0b1010:
-            raise RuntimeError("Can currently only handle mp3!")
+            raise TypeError("Can currently only handle mp3!")
         sample_bytes = (0b00001100 & frame_header[2]) >> 2
         frame.sample_rate = sample_rate_table[sample_bytes]
         self.data_example.sample_rate = frame.sample_rate
         frame.bit_rate_bits = bitrate_table[bit_rate_bits]
         self.data_example.bit_rate = frame.bit_rate_bits
+        frame_size = 144
+        kilobyte = 1000
         frame.size = int(
-            144 * (1000 * frame.bit_rate_bits) / frame.sample_rate)
+            frame_size * (kilobyte * frame.bit_rate_bits) / frame.sample_rate)
         if frame.padded:
             frame.size += 1
         return frame
@@ -61,7 +63,6 @@ class AudioFrameMp3:
             self.data_example.audio_data += self.data_example.raw_data[
                                             frame_idx:frame.size + frame_idx]
             frame_idx = sum(frame_sizes)
-
         self.data_example.count = len(frame_sizes)
         self.data_example.all_sizes = frame_sizes
         return frame_idx

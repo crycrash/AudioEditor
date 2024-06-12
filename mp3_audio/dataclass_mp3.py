@@ -4,8 +4,8 @@ from dataclasses import dataclass
 @dataclass
 class Mp3Audio:
     """Класс данных для хранения данных об MP3 дорожке"""
-    all_headers: []
-    all_sizes: []
+    all_headers: list
+    all_sizes: list
     path: str = ''
     raw_data: bytes = b''
     audio_data: bytes = b''

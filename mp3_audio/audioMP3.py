@@ -12,6 +12,7 @@ class AudiofileMP3:
         self.audio_data = self.audio.raw_data
         self.frames_headers = self.audio_frame.data_example.all_headers
         self.sizes_headers = self.audio_frame.data_example.all_sizes
+        self.format = '.mp3'
 
     def output_files(self, path):
         """"Вывод в файл"""
@@ -22,13 +23,13 @@ class AudiofileMP3:
         """Обрезка файла по указанным секундам"""
         if (start_point > self.audio.size or end_point >
                 self.audio.size):
-            raise Exception('You have gone beyond the allowed length')
+            raise ValueError('You have gone beyond the allowed length')
         frame_start = int(len(self.audio_data) // self.audio.size)
         frame_end = frame_start * end_point
         frame_start = frame_start * start_point
         new_data = self.audio_data[frame_start:frame_end]
         self.audio_data = new_data
-        self.output_files(path + '.mp3')
+        self.output_files(path + self.format)
         self.audio.size = end_point - start_point
         self.path = path
 
@@ -42,7 +43,7 @@ class AudiofileMP3:
         output_data = (self.audio_data[:frame_start] + insert_data
                        + self.audio_data[frame_start:])
         self.audio_data = output_data
-        self.output_files(path + '.mp3')
+        self.output_files(path + self.format)
         self.audio.size += other.audio.size
         self.path = path
 
