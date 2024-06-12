@@ -25,8 +25,8 @@ class AudiofileMP3:
                 self.audio.size):
             raise ValueError('You have gone beyond the allowed length')
         frame_start = int(len(self.audio_data) // self.audio.size)
-        frame_end = frame_start * end_point
-        frame_start = frame_start * start_point
+        frame_end = int(frame_start * end_point)
+        frame_start = int(frame_start * start_point)
         new_data = self.audio_data[frame_start:frame_end]
         self.audio_data = new_data
         self.output_files(path + self.format)
@@ -36,7 +36,7 @@ class AudiofileMP3:
     def splice_audio(self, path, other, start_point):
         """Вставка одного аудио файла в другой"""
         if start_point > int(self.audio.size):
-            raise Exception('You have gone beyond the allowed length')
+            raise ValueError('You have gone beyond the allowed length')
         frame_start = int(len(self.audio_data) // self.audio.size)
         frame_start = frame_start * start_point
         insert_data = other.audio_data

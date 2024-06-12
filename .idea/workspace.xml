@@ -8,26 +8,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d02503f3-9db7-4e50-a249-db6a87bf3df2" name="Changes" comment="Обновленные графики">
-      <change afterPath="$PROJECT_DIR$/front/templates.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/tests_audioMP3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/tests_audioWav.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/tests_basic_functions_gui.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/tests_dialog_window.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/tests_help_functions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/tests_parseMP3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/tests_version_handler.py" afterDir="false" />
+    <list default="true" id="d02503f3-9db7-4e50-a249-db6a87bf3df2" name="Changes" comment="Тесты">
+      <change afterPath="$PROJECT_DIR$/tests/tests_equalizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/tests_file_helper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/tests_gui.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/tests_window_projects.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/help_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/back/help_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/paths.py" beforeDir="false" afterPath="$PROJECT_DIR$/back/paths.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/equalizer_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/equalizer_constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/paths.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/back/version_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/back/version_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/dialog_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/dialog_window.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/equalizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/equalizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/templates.txt" beforeDir="false" afterPath="$PROJECT_DIR$/front/templates.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/window_audio_play.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/window_audio_play.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/window_projects.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/window_projects.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mp3_audio/audioMP3.py" beforeDir="false" afterPath="$PROJECT_DIR$/mp3_audio/audioMP3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mp3_audio/dataclass_MP3_frame.py" beforeDir="false" afterPath="$PROJECT_DIR$/mp3_audio/dataclass_MP3_frame.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mp3_audio/dataclass_mp3.py" beforeDir="false" afterPath="$PROJECT_DIR$/mp3_audio/dataclass_mp3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mp3_audio/parseMP3.py" beforeDir="false" afterPath="$PROJECT_DIR$/mp3_audio/parseMP3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wav_audio/audioWav.py" beforeDir="false" afterPath="$PROJECT_DIR$/wav_audio/audioWav.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,9 +86,23 @@
     "Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_splice_audio_invalid.executor": "Run",
     "Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_splice_audio_valid.executor": "Run",
     "Python tests.Python tests for tests_audioWav.TestAudiofileWav.test_take_header_config.executor": "Run",
+    "Python tests.Python tests for tests_equalizer.TestEqualizer.test_bandpass_filter.executor": "Run",
+    "Python tests.Python tests for tests_equalizer.TestEqualizer.test_create_figure.executor": "Run",
+    "Python tests.Python tests for tests_equalizer.TestEqualizer.test_open_audio_mp3.executor": "Run",
+    "Python tests.Python tests for tests_equalizer.TestEqualizer.test_save_file.executor": "Run",
+    "Python tests.Python tests for tests_equalizer.TestEqualizer.test_update_plot.executor": "Run",
+    "Python tests.Python tests for tests_equalizer.TestEqualizer.test_visualizing_equalizer.executor": "Run",
+    "Python tests.Python tests for tests_gui.TestGUI.test_init.executor": "Run",
+    "Python tests.Python tests for tests_gui.TestGUI.test_start_buttons.executor": "Run",
+    "Python tests.Python tests for tests_window_projects.TestWindowProjects.test_ask_name_project_no_name.executor": "Run",
+    "Python tests.Python tests for tests_window_projects.TestWindowProjects.test_ask_name_project_with_name.executor": "Run",
+    "Python tests.Python tests for tests_window_projects.TestWindowProjects.test_create_interface.executor": "Run",
     "Python tests.Python tests in test_gui.py.executor": "Run",
     "Python tests.Python tests in tests_audioMP3.py.executor": "Run",
     "Python tests.Python tests in tests_audioWav.py.executor": "Run",
+    "Python tests.Python tests in tests_equalizer.py.executor": "Run",
+    "Python tests.Python tests in tests_gui.py.executor": "Run",
+    "Python tests.Python tests in tests_window_projects.py.executor": "Run",
     "Python.__init__.executor": "Run",
     "Python.audio.executor": "Run",
     "Python.audioMP3.executor": "Run",
@@ -132,8 +143,8 @@
       <recent name="$PROJECT_DIR$/wav" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for tests_audioWav.TestAudiofileWav.test_take_header_config">
-    <configuration name="Python tests for tests_audioMP3.TestAudiofileMP3.test_crop_audio_invalid" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="Python tests for tests_equalizer.TestEqualizer.test_create_figure" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="audioEditor" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -144,11 +155,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests_audioMP3.TestAudiofileMP3.test_crop_audio_invalid&quot;" />
+      <option name="_new_target" value="&quot;tests_equalizer.TestEqualizer.test_create_figure&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests_audioMP3.TestAudiofileMP3.test_speed_up_audio" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for tests_equalizer.TestEqualizer.test_open_audio_mp3" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="audioEditor" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -159,11 +170,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests_audioMP3.TestAudiofileMP3.test_speed_up_audio&quot;" />
+      <option name="_new_target" value="&quot;tests_equalizer.TestEqualizer.test_open_audio_mp3&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests_audioMP3.TestAudiofileMP3.test_splice_audio_invalid" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for tests_equalizer.TestEqualizer.test_save_file" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="audioEditor" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -174,11 +185,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests_audioMP3.TestAudiofileMP3.test_splice_audio_invalid&quot;" />
+      <option name="_new_target" value="&quot;tests_equalizer.TestEqualizer.test_save_file&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests_audioMP3.TestAudiofileMP3.test_splice_audio_valid" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for tests_equalizer.TestEqualizer.test_update_plot" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="audioEditor" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -189,11 +200,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests_audioMP3.TestAudiofileMP3.test_splice_audio_valid&quot;" />
+      <option name="_new_target" value="&quot;tests_equalizer.TestEqualizer.test_update_plot&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests_audioWav.TestAudiofileWav.test_take_header_config" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for tests_equalizer.TestEqualizer.test_visualizing_equalizer" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="audioEditor" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -204,17 +215,17 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests_audioWav.TestAudiofileWav.test_take_header_config&quot;" />
+      <option name="_new_target" value="&quot;tests_equalizer.TestEqualizer.test_visualizing_equalizer&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for tests_audioWav.TestAudiofileWav.test_take_header_config" />
-        <item itemvalue="Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_speed_up_audio" />
-        <item itemvalue="Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_splice_audio_invalid" />
-        <item itemvalue="Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_splice_audio_valid" />
-        <item itemvalue="Python tests.Python tests for tests_audioMP3.TestAudiofileMP3.test_crop_audio_invalid" />
+        <item itemvalue="Python tests.Python tests for tests_equalizer.TestEqualizer.test_open_audio_mp3" />
+        <item itemvalue="Python tests.Python tests for tests_equalizer.TestEqualizer.test_visualizing_equalizer" />
+        <item itemvalue="Python tests.Python tests for tests_equalizer.TestEqualizer.test_create_figure" />
+        <item itemvalue="Python tests.Python tests for tests_equalizer.TestEqualizer.test_update_plot" />
+        <item itemvalue="Python tests.Python tests for tests_equalizer.TestEqualizer.test_save_file" />
       </list>
     </recent_temporary>
   </component>
@@ -346,7 +357,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717771726014</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Тесты">
+      <option name="closed" value="true" />
+      <created>1718195641056</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1718195641056</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -375,7 +394,8 @@
     <MESSAGE value="Шаблоны" />
     <MESSAGE value="Эквалайзер" />
     <MESSAGE value="Обновленные графики" />
-    <option name="LAST_COMMIT_MESSAGE" value="Обновленные графики" />
+    <MESSAGE value="Тесты" />
+    <option name="LAST_COMMIT_MESSAGE" value="Тесты" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -384,6 +404,10 @@
           <url>file://$PROJECT_DIR$/front/window_audio_play.py</url>
           <line>233</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/back/version_handler.py</url>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

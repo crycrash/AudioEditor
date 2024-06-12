@@ -28,8 +28,7 @@ class AudiofileWav:
         fmt_string = b'fmt '
         if (self.header[0:4] != riff_string) or \
                 (self.header[12:16] != fmt_string):
-            print(self.header[12:16])
-            raise Exception("Not valid")
+            raise TypeError("Not valid")
 
     def output_files(self, path):
         """Вывод данных ы файл"""
@@ -75,7 +74,7 @@ class AudiofileWav:
         """Обрезка файла по указанным секундам"""
         if (start_point > self.stHeaderFields.size_sec or end_point >
                 self.stHeaderFields.size_sec):
-            raise Exception('You have gone beyond the allowed length')
+            raise ValueError('You have gone beyond the allowed length')
         size_header = 36
         count = len(self.audio_data) // self.stHeaderFields.size_sec
         self.audio_data = self.audio_data[int(start_point * count):
@@ -101,7 +100,7 @@ class AudiofileWav:
     def splice_audio(self, path, other, time):
         """Вставка одного файла в другой"""
         if time > int(self.stHeaderFields.size_sec):
-            raise Exception('You have gone beyond the allowed length')
+            raise ValueError('You have gone beyond the allowed length')
         if isinstance(other, AudiofileWav):
             size_header = 36
             count = len(self.audio_data) // self.stHeaderFields.size_sec

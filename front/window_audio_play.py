@@ -1,3 +1,4 @@
+import os
 from tkinter import *
 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -12,7 +13,6 @@ from back.help_functions import (open_file_dialog, draw_plot_back,
                                  plot_mp3_file_back, plot_wav_file_back,
                                  parse_file_templates, find_template_info,
                                  count_coordinates)
-from back.paths import path_user_data
 
 
 class WindowAudio:
@@ -33,13 +33,22 @@ class WindowAudio:
         self.window_helper = BasicFunctions()
         self.mp3_format = '.mp3'
         self.wav_format = '.wav'
+        self.path_user_data = None
+        self.make_path_user_data()
+
+    def make_path_user_data(self):
+        current_directory = os.path.normpath(os.getcwd() + os.sep + os.pardir)
+        relative_path_user_data = 'users_data/'
+        self.path_user_data = os.path.join(current_directory,
+                                           relative_path_user_data)
 
     def open_exist_project(self):
         """Открытие уже созданного проекта"""
         audio_window = self.make_standard_window()
         if self.execute_project_mp3(audio_window) == -1:
             self.execute_project_wav(audio_window)
-        version_file = path_user_data + self.name_project + "/versions.txt"
+        version_file = (self.path_user_data + self.name_project +
+                        "/versions.txt")
         f = open(version_file, 'w')
         f.close()
         self.place_buttons(audio_window)
@@ -51,7 +60,7 @@ class WindowAudio:
             open(self.temp_path + self.mp3_format, 'r')
             self.temp_path += self.mp3_format
             self.version_handler.first_path = \
-                (path_user_data + self.name_project + "/first.mp3")
+                (self.path_user_data + self.name_project + "/first.mp3")
             self.version_handler.format = format_audio
             self.format = format_audio
             self.audio = AudiofileMP3(self.temp_path)
@@ -64,7 +73,7 @@ class WindowAudio:
         format_audio = 'wav'
         self.temp_path += self.wav_format
         self.version_handler.first_path = \
-            (path_user_data +
+            (self.path_user_data +
              self.name_project + "/first.wav")
         self.version_handler.format = format_audio
         self.format = format_audio

@@ -12,7 +12,7 @@ class TestAudiofileWav(unittest.TestCase):
 
     def test_init(self):
         """Тестирование инициализации"""
-        self.assertEqual(self.audiofile.path, "test")
+        self.assertEqual(self.audiofile.path, "test.wav")
         self.assertTrue(len(self.audiofile.header) > 0)
         self.assertTrue(len(self.audiofile.audio_data) > 0)
 
@@ -62,10 +62,6 @@ class TestAudiofileWav(unittest.TestCase):
         handle.write.assert_any_call(self.audiofile.header)
         handle.write.assert_any_call(self.audiofile.audio_data)
 
-    @patch("builtins.open", new_callable=mock_open, read_data=b'RIFF' +
-                                                              b'\x00' * 36 +
-                                                              b'fmt ' +
-                                                              b'\x00' * 24)
     def test_crop_audio(self):
         """Тестирование обрезки аудио"""
         self.audiofile.stHeaderFields = wavAudio(
@@ -81,10 +77,6 @@ class TestAudiofileWav(unittest.TestCase):
         self.assertEqual(len(self.audiofile.audio_data), 300)
         self.assertEqual(self.audiofile.stHeaderFields.size_sec, 3)
 
-    @patch("builtins.open", new_callable=mock_open, read_data=b'RIFF' +
-                                                              b'\x00' * 36 +
-                                                              b'fmt ' +
-                                                              b'\x00' * 24)
     def test_speed_up_audio(self):
         """Тестирование ускорения аудио"""
         self.audiofile.stHeaderFields = wavAudio(

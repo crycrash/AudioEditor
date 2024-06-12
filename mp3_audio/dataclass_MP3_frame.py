@@ -4,7 +4,7 @@ from dataclasses import dataclass
 @dataclass
 class Mp3AudioFrame:
     """Класс данных для хранения данных об MP3 фрейме"""
-    header: list
+    header: list[bytes]
     marker: int
     padded: bool
     bit_rate_bits: int

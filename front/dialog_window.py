@@ -44,7 +44,6 @@ class TrimDialog(simpledialog.Dialog):
             if self.type == "erase":
                 self.start = int(self.start_entry.get())
                 self.end = int(self.end_entry.get())
-
             elif self.type == 'speed':
                 self.start = float(self.start_entry.get())
             elif self.type == 'name':

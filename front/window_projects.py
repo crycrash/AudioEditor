@@ -1,12 +1,13 @@
+import os
 from tkinter import *
 from tkinter import simpledialog
 
 from back.help_functions import get_folders_with_creation_dates
-from back.paths import path_user_data
 from front.window_audio_play import WindowAudio
 
 
 class WindowProjects:
+
     def __init__(self, window, version_handler, window_helper):
         """Инициация стартового окна"""
         self.window = window
@@ -14,6 +15,14 @@ class WindowProjects:
         self.version_handler = version_handler
         self.window_helper = window_helper
         self.name_project = ''
+        self.path_user_data = None
+        self.make_path_user_data()
+
+    def make_path_user_data(self):
+        current_directory = os.path.normpath(os.getcwd() + os.sep + os.pardir)
+        relative_path_user_data = 'users_data/'
+        self.path_user_data = os.path.join(current_directory,
+                                           relative_path_user_data)
 
     def ask_name_project(self, previous_window, event):
         """Запрос названия проекта"""
@@ -40,7 +49,7 @@ class WindowProjects:
                                                project_window, 15, 5))
         button_start.bind("<Button-1>", lambda e: self.ask_name_project(
             project_window, e))
-        self.create_interface(path_user_data, project_window)
+        self.create_interface(self.path_user_data, project_window)
         button_start.grid(row=0, column=3)
 
     def create_interface(self, parent_folder, window):
@@ -61,9 +70,9 @@ class WindowProjects:
 
     def open_project(self, folder_name, previous_window, event):
         """Открытие созданного проекта"""
-        self.temp_path = path_user_data + folder_name + '/temp'
+        self.temp_path = self.path_user_data + folder_name + '/temp'
         window_audio = WindowAudio(previous_window,
                                    self.version_handler, self.temp_path,
                                    folder_name)
-        self.version_handler.path = path_user_data + folder_name + '/'
+        self.version_handler.path = self.path_user_data + folder_name + '/'
         window_audio.open_exist_project()

@@ -1,7 +1,7 @@
+import os
 from pathlib import Path
 from wav_audio.audioWav import AudiofileWav
 from mp3_audio.audioMP3 import AudiofileMP3
-from back.paths import path_user_data
 
 
 class VersionHandler:
@@ -15,10 +15,18 @@ class VersionHandler:
         self.audio = None
         self.first_path = None
         self.data = None
+        self.path_user_data = None
+        self.make_user_path()
+
+    def make_user_path(self):
+        current_directory = os.path.normpath(os.getcwd() + os.sep + os.pardir)
+        relative_path_user_data = 'users_data/'
+        self.path_user_data = os.path.join(current_directory,
+                                           relative_path_user_data)
 
     def make_directory_project(self, project_name):
         """Создание папки проекта"""
-        self.path = path_user_data + project_name
+        self.path = self.path_user_data + project_name
         Path(self.path).mkdir(parents=True, exist_ok=True)
         self.path += '/'
         self.make_list_versions()

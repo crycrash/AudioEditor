@@ -10,7 +10,11 @@ from dash import html
 import threading
 import webview
 from flask import Flask
-from back.equalizer_constants import consts
+from front.equalizer_constants import (NORMALIZATION, FULL_NORMALIZATION,
+                                       LOW_LIMIT, UPPER_LIMIT, LOW_RATE_START,
+                                       MIDDLE_RATE_START, HIGH_RATE_START,
+                                       HIGH_RATE_END,
+                                       COEFFICIENT_NORMALIZATION)
 
 
 class Equalizer:
@@ -38,10 +42,11 @@ class Equalizer:
     @staticmethod
     def butter_bandpass(low_cut, high_cut, sampling_rate, order=5):
         """Возвращает коэфициенты фильтра"""
-        nyquist_frequency = consts['normalization'] * sampling_rate
+        nyquist_frequency = NORMALIZATION * sampling_rate
         low_normalization = low_cut / nyquist_frequency
+
         high_normalization = high_cut / nyquist_frequency
-        if high_normalization >= consts['full_normalization']:
+        if high_normalization >= FULL_NORMALIZATION:
             high_normalization = 0.99
         if low_normalization >= high_normalization:
             low_normalization = high_normalization - 0.01
@@ -70,8 +75,8 @@ class Equalizer:
             filtered = self.bandpass_filter(samples, low_cut, high_cut,
                                             sample_rate)
             filtered_samples += gain * filtered
-        filtered_samples = np.clip(filtered_samples, consts['low_limit'],
-                                   consts['upper_limit'])
+        filtered_samples = np.clip(filtered_samples, LOW_LIMIT,
+                                   UPPER_LIMIT)
         filtered_samples = np.nan_to_num(filtered_samples)
         filtered_samples = filtered_samples.astype(np.int16)
         return AudioSegment(
@@ -86,12 +91,12 @@ class Equalizer:
 
         if self.audio:
             output_audio = self.apply_filters([
-                (consts['low_rate_start'], consts['middle_rate_start'],
-                 self.low_slider.get() / consts["coefficient_normalization"]),
-                (consts['middle_rate_start'], consts['high_rate_start'],
-                 self.mid_slider.get() / consts["coefficient_normalization"]),
-                (consts['high_rate_start'], consts['high_rate_end'],
-                 self.high_slider.get() / consts["coefficient_normalization"])
+                (LOW_RATE_START, MIDDLE_RATE_START,
+                 self.low_slider.get() / COEFFICIENT_NORMALIZATION),
+                (MIDDLE_RATE_START, HIGH_RATE_START,
+                 self.mid_slider.get() / COEFFICIENT_NORMALIZATION),
+                (HIGH_RATE_START, HIGH_RATE_END,
+                 self.high_slider.get() / COEFFICIENT_NORMALIZATION)
             ])
             output_audio.export(self.path, format="mp3")
 
@@ -171,13 +176,13 @@ class Equalizer:
     def execute_filtration(self):
         """Осуществление фильтрации"""
         filtered_audio = self.apply_filters([
-            (consts['low_rate_start'], consts['middle_rate_start'],
-             self.low_slider.get() / consts["coefficient_normalization"]),
-            (consts['middle_rate_start'], consts['high_rate_start'],
-             self.mid_slider.get() / consts["coefficient_normalization"]),
-            (consts['high_rate_start'], consts['high_rate_end'],
-             self.high_slider.get() / consts["coefficient_normalization"])
-        ])
+                (LOW_RATE_START, MIDDLE_RATE_START,
+                 self.low_slider.get() / COEFFICIENT_NORMALIZATION),
+                (MIDDLE_RATE_START, HIGH_RATE_START,
+                 self.mid_slider.get() / COEFFICIENT_NORMALIZATION),
+                (HIGH_RATE_START, HIGH_RATE_END,
+                 self.high_slider.get() / COEFFICIENT_NORMALIZATION)
+            ])
         return filtered_audio
 
     def visualizing_equalizer(self):
